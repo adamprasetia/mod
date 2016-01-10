@@ -168,6 +168,6 @@ class User extends MY_Controller {
 				return $this->upload->data();
 			}
 		}
-		return true;
+		return false;
 	}
 }
