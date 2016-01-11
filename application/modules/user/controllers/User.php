@@ -103,15 +103,15 @@ class User extends MY_Controller {
 			$data['content'] = $this->load->view('user_form',$xdata,true);
 			$this->load->view('template',$data);
 		}else{
+			$data = $this->_field();
 			$result = $this->_upload_image();
 			if($result <> false){
-				$data = $this->_field();
 				$data['user_create'] = $this->session->userdata('user_login');
 				$data['date_create'] = date('Y-m-d H:i:s');
 				$data['photo'] = isset($result['file_name'])?$result['file_name']:'';
-				$this->user_model->add($data);
-				$this->session->set_flashdata('alert','<div class="alert alert-success">Tambah Data Sukses</div>');
 			}
+			$this->user_model->add($data);
+			$this->session->set_flashdata('alert','<div class="alert alert-success">Tambah Data Sukses</div>');
 			redirect('user/add'.get_query_string());
 		}
 	}
@@ -126,15 +126,15 @@ class User extends MY_Controller {
 			$data['content'] = $this->load->view('user_form',$xdata,true);
 			$this->load->view('template',$data);
 		}else{
+			$data = $this->_field();
 			$result = $this->_upload_image();
 			if($result <> false){
-				$data = $this->_field();
 				$data['user_update'] = $this->session->userdata('user_login');
 				$data['date_update'] = date('Y-m-d H:i:s');
 				$data['photo'] = isset($result['file_name'])?$result['file_name']:'';
-				$this->user_model->edit($id,$data);
-				$this->session->set_flashdata('alert','<div class="alert alert-success">Edit Data Sukses</div>');				
 			}
+			$this->user_model->edit($id,$data);
+			$this->session->set_flashdata('alert','<div class="alert alert-success">Edit Data Sukses</div>');				
 			redirect('user/edit/'.$id.get_query_string());
 		}
 	}
@@ -168,6 +168,6 @@ class User extends MY_Controller {
 				return $this->upload->data();
 			}
 		}
-		return false;
+		return true;
 	}
 }
