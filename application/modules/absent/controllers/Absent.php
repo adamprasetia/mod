@@ -59,7 +59,7 @@ class Absent extends MY_Controller {
 		$date_to = $this->input->get("date_to");
 		$event = $this->input->get("event");
 		if($date_from <> '' && $date_to <> '' && $event <> ''){
-			$result = $this->user_event_model->get_all()->result();
+			$result = $this->user_event_model->get_user_all()->result();
 			$data = array();
 			foreach($result as $r){
 				$from = date_create(format_ymd($date_from));
@@ -89,7 +89,7 @@ class Absent extends MY_Controller {
 		$date_to = $this->input->get("date_to");
 		$event = $this->input->get("event");
 		if($date_from <> '' && $date_to <> '' && $event <> ''){
-			$result = $this->user_event_model->get_all()->result();
+			$result = $this->user_event_model->get_user_all()->result();
 			$data = array();
 			foreach($result as $r){
 				$from = date_create(format_ymd($date_from));
